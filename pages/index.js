@@ -1,63 +1,70 @@
-import styled from 'styled-components'
+import Box from "../src/components/Box/box.js";
+import MainGrid from "../src/components/MainGrid/mainGrid.js";
+import { AlurakutMenu, OrkutNostalgicIconSet } from "../src/lib/AlurakutCommons";
+import { ProfileRelationsBoxWrapper } from '../src/components/RelationsShips/relationsShips.js';
 
-const Title = styled.h1`
-  font-size: 50px;
-  color: ${({ theme }) => theme.colors.primary};
-`;
+function ProfileImage(imagem) {
+  return (
+    <Box>
+      <img src={`https://github.com/${imagem.gitImage}.png`} alt="User" style={{ borderRadius: '8px'}} />
+    </Box> 
+  )
+}
 
-const MainGrid = styled.main`
-  display: grid;
-  margin: 0 auto;
-  grid-gap: 10px;
-  padding: 16px;
-  width: 100%;
-  max-width: 500px;  
+function Friendships(imagemShips) {
 
-  .profile {
-    display: none;
-    @media(min-width: 860px){
-      display: block;
-    }
-  }
-  
-  @media(min-width: 860px) {
-    grid-template-columns: 160px 1fr 312px;
-    max-width: 1100px;
-    grid-template-areas: "
-      Profile Welcome RelationShips
-    ";
-  }
-`;
-
-const Box = styled.div`
-  background: #ffffff;
-  border-radius: 8px;
-`;
+  return (
+    <Box>
+      <img src={`https://github.com/${imagemShips.gitImages[0]}.png`} alt="User" style={{ borderRadius: '8px'}} />
+    </Box> 
+  )
+}
 
 export default function Home() {
+  const gitUser = 'aslayclevisson';
+
+  const gitFriends = ['y','x','z','a','b','h','l','k','q']
+
   return (
+    <>
+      <AlurakutMenu />
+      <MainGrid>
+        <div className="profile" style={{ gridArea:'Profile'}}>
+          <ProfileImage gitImage = {gitUser}/>
+        </div>
+        
+        <div className="welcomeArea" style={{ gridArea:'Welcome'}}>
+          <Box>
+            <h1 className="title">
+              Bem-vindo(a)
+            </h1>
+            <OrkutNostalgicIconSet />
+          </Box> 
+        </div>
 
-    <MainGrid>
-      <div className="profile" style={{ gridArea:'Profile'}}>
-        <Box>
-          Imagem
-        </Box> 
-      </div>
-      <div style={{ gridArea:'Welcome'}}>
-        <Box>
-          Bem-vindo
-        </Box> 
-      </div>
-      <div style={{ gridArea:'RelationShips'}}>
-        <Box>
-          Amigos
-        </Box > 
+        <div className="relationsArea" style={{ gridArea:'RelationShips'}}>
+          <ProfileRelationsBoxWrapper>  
+            <h2 className="smallTitle">Amizades</h2>
+            <p>Pessoas na comunidade ({gitFriends.length})</p>
+            <ul>
+              {gitFriends.map((followers) => {
+                return (
+                  <li>
+                    <a href={`/users/${followers}`} key={followers}>
+                      <img src={`https://github.com/${followers}.png`} alt="Users" style={{ borderRadius: '4px'}} />
+                      <span>{followers}</span>
+                    </a>
+                  </li>
+                )
+              })}
+            </ul>  
+          </ProfileRelationsBoxWrapper>
 
-        <Box>
-          Comunidades
-        </Box > 
-      </div>
-    </MainGrid>
-
+          <Box>
+            Comunidades
+          </Box > 
+        </div>
+      </MainGrid>
+    </>
   )
 }
