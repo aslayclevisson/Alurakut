@@ -32,7 +32,7 @@ const Box = styled.div`
   hr {
     margin-top: 12px;
     margin-bottom: 8px;
-    border-bottom: 2px solid #ECF2FA;
+    border-bottom: 2px solid blueviolet;
   }
 
   input {

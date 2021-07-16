@@ -1,12 +1,18 @@
 import Box from "../src/components/Box/box.js";
 import MainGrid from "../src/components/MainGrid/mainGrid.js";
-import { AlurakutMenu, OrkutNostalgicIconSet } from "../src/lib/AlurakutCommons";
+import { AlurakutProfileSidebarMenuDefault, AlurakutMenu, OrkutNostalgicIconSet } from "../src/lib/AlurakutCommons";
 import { ProfileRelationsBoxWrapper } from '../src/components/RelationsShips/relationsShips.js';
 
-function ProfileImage(imagem) {
+function ProfileLeftSidebar(user) {
   return (
     <Box>
-      <img src={`https://github.com/${imagem.gitImage}.png`} alt="User" style={{ borderRadius: '8px'}} />
+      <img src={`https://github.com/${user.gitUser}.png`} alt="User" style={{ borderRadius: '8px'}} />
+      <hr />
+
+      <a className="boxLink" href="{`https://github.com/${user.gitUser}.png`}"> @{user.gitUser}</a>
+      <hr />
+
+      <AlurakutProfileSidebarMenuDefault />
     </Box> 
   )
 }
@@ -30,7 +36,7 @@ export default function Home() {
       <AlurakutMenu />
       <MainGrid>
         <div className="profile" style={{ gridArea:'Profile'}}>
-          <ProfileImage gitImage = {gitUser}/>
+          <ProfileLeftSidebar gitUser= {gitUser}/>
         </div>
         
         <div className="welcomeArea" style={{ gridArea:'Welcome'}}>
