@@ -1,13 +1,11 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const MainGrid = styled.main`
-  display: grid;
   margin: 0 auto;
   grid-gap: 10px;
   padding: 16px;
   width: 100%;
   max-width: 500px;  
-
   .profile {
     display: none;
     @media(min-width: 860px){
